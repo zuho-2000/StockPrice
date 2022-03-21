@@ -1,9 +1,17 @@
 from django import forms
 
-from .models import Post
+from .models import Item
+from .models import Shop
+from .models import Price
 
-class PostForm(forms.ModelForm):
+class ItemForm(forms.ModelForm):
 
     class Meta:
-        model = Post
-        fields = ('title', 'text',)
+        model = Item
+        fields = ('iName','genre','stock',)
+
+class ShopForm(forms.ModelForm):
+
+    class Meta:
+        model = Shop
+        fields = ('sName', 'area',)

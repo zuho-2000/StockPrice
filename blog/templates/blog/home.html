@@ -17,15 +17,21 @@
     </div>
 
     {% block content %}
-        {% for post in posts %}
-            <div class="post">
-                <div class="date">
-                    {{ post.published_date }}
+        {% if user.is_authenticated %}
+            {% for Price in Prices %}
+                <div class="post">
+                    <div class="date">
+                        {{ Price.day }}
+                    </div>
+                    <p>{{ Price.item }}</p>
+                    <p>{{ Price.shop }}</p>
+                    <p>{{ Price.price }}</p>
                 </div>
-                <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-                <p>{{ post.text|linebreaksbr }}</p>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+        <h1>ログインしてください</h1>
+        <h2><a href="{% url 'login' %}">ログイン</a></h2>
+        {% endif %}
     {% endblock %}
 </body>
 

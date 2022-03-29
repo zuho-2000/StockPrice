@@ -1,38 +1,33 @@
 {% extends 'blog/base.html' %}
-{% load static %}
 
-<html>
-
-<head>
-    <title>Django Girls blog</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-</head>
-
-<body>
-    <div class="page-header">
-        <h1><a href="/">Django Girls Blog</a></h1>
-    </div>
-
-    {% block content %}
-        {% if user.is_authenticated %}
-            {% for Price in Prices %}
-                <div class="post">
-                    <div class="date">
-                        {{ Price.day }}
-                    </div>
-                    <p>{{ Price.item }}</p>
-                    <p>{{ Price.shop }}</p>
-                    <p>{{ Price.price }}</p>
-                </div>
-            {% endfor %}
-        {% else %}
-        <h1>ログインしてください</h1>
-        <h2><a href="{% url 'login' %}">ログイン</a></h2>
-        {% endif %}
-    {% endblock %}
-</body>
-
-</html>
+{% block content %}
+    {% if user.is_authenticated %}
+        <div>
+            <table class="hometable">
+                <thead>
+                    <tr>
+                        <th>名前</th>
+                        <th>年齢</th>
+                        <th>年齢</th>
+                        <th>名前</th>
+                        <th>年齢</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for Price in Prices %}
+                    <tr>
+                        <td>{{ Price.item.iName }}</td>
+                        <td>{{ Price.shop.sName }}</td>
+                        <td>{{ Price.price}}</td>
+                        <td>{{ Price.item.genre }}</td>
+                        <td>{{ Price.shop.area }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+    <h1>ログインしてください</h1>
+    <h2><a href="{% url 'login' %}">ログイン</a></h2>
+    {% endif %}
+{% endblock %}

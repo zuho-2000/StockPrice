@@ -7,7 +7,8 @@ from django.utils import timezone
 class Item(models.Model):
     iName = models.CharField(max_length=20)
     genre = models.CharField(max_length=10)
-    stock = models.PositiveSmallIntegerField()
+    stock = models.PositiveSmallIntegerField(default=0)
+    under = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
         return self.iName

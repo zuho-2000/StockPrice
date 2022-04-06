@@ -8,10 +8,16 @@ class ItemForm(forms.ModelForm):
 
     class Meta:
         model = Item
-        fields = ('iName','genre','stock',)
+        fields = ('iName','genre','stock', 'under',)
 
 class ShopForm(forms.ModelForm):
 
     class Meta:
         model = Shop
         fields = ('sName', 'area',)
+
+class PriceForm(forms.ModelForm):
+
+    class Meta:
+        model = Price
+        fields = ('item', 'shop', 'price', 'volume',)

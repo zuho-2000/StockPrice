@@ -1,6 +1,7 @@
 from unicodedata import name
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 
 
@@ -28,6 +29,11 @@ class Price(models.Model):
     day = models.DateTimeField(default=timezone.now)
     price = models.PositiveIntegerField()
     volume = models.PositiveSmallIntegerField()
+    unit_price = models.FloatField(default=0)
+
+    def save(self, *args, **kwargs):
+        unit_price = round(self.price + self.volume ,2)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return str(self.item) + " " + str(self.shop)

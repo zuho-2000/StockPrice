@@ -1,4 +1,5 @@
 {% load static %}
+
 <html>
 
 <head>
@@ -16,7 +17,7 @@
             <a href="/" class="top-menu">ホーム</a>
             <a href="/" class="top-menu">在庫</a>
             <a href="/" class="top-menu">価格</a>
-            <a href="/" class="top-menu">設定</a>
+            <a href="{% url 'post_new' %}" class="top-menu">設定</a>
             <p class="user_neme"> {{ user.username }} <small>(<a href="{% url 'logout' %}">ログアウト</a>)</small></p>
         {% else %}
             <a href="{% url 'login' %}" class="user_neme"><span class="glyphicon glyphicon-lock">login</span></a>

@@ -3,24 +3,24 @@
 {% block content %}
     {% if user.is_authenticated %}
         <div>
+            <h3>{{ Prices }}</h3>
             <table class="hometable">
                 <thead>
                     <tr>
                         <th>名前</th>
-                        <th>年齢</th>
-                        <th>年齢</th>
-                        <th>名前</th>
-                        <th>年齢</th>
+                        <th>店名</th>
+                        <th>価格</th>
+                        <th>最小</th>
+                        <th>単価</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for Price in Prices %}
                     <tr>
-                        <td>{{ Price.item.iName }}</td>
+                        <td>{{ Price.iName }}</td>
                         <td>{{ Price.shop.sName }}</td>
                         <td>{{ Price.price}}</td>
-                        <td>{{ Price.item.genre }}</td>
-                        <td>{{ Price.shop.area }}</td>
+                        <td>{{ Price.price__price__min}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

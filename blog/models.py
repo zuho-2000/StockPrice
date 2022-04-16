@@ -29,11 +29,16 @@ class Price(models.Model):
     day = models.DateTimeField(default=timezone.now)
     price = models.PositiveIntegerField()
     volume = models.PositiveSmallIntegerField()
-    unit_price = models.FloatField(default=0)
+    unit_price=models.FloatField(default=0)
+
+    @property
+    def price_Calculation(self, *args, **kwargs):
+        return round(self.price / self.volume ,2)
 
     def save(self, *args, **kwargs):
-        unit_price = round(self.price + self.volume ,2)
-        super().save(*args, **kwargs)
+        self.unit_price = self.price_Calculation
+        super(Price, self).save(*args, **kwargs)
+
 
     def __str__(self):
         return str(self.item) + " " + str(self.shop)
